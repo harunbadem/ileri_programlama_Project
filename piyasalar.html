@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borsa Sitesi</title>
+    <link rel="stylesheet" href="stil.css">
     
     <script src="borsa.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
 </head>
 
 
@@ -14,106 +15,158 @@
 <body>
     <header class="bg-dark text-white p-3">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1>Borsa Takip</h1>
-            <!-- Menü Bağlantıları Sağ Tarafa Yerleştirilecek -->
+            <img src="security.png" alt="Site Başlığı Resmi" width="50" height="auto">
+            <h1>Borsa Casusu</h1>
+            <!-- Menüler -->
             <nav class="ms-auto">
                 <a href="index.html" class="text-white mx-2">Ana Sayfa</a>
                 <a href="piyasalar.html" class="text-white mx-2">Piyasalar</a>
-                <a href="#news" class="text-white mx-2">Haberler</a>
+                <a href="haberler.html" class="text-white mx-2">Haberler</a>
                 <a href="#contact" class="text-white mx-2">İletişim</a>
             </nav>
         </div>
     
-        <!-- Arama kutusu ortalanacak -->
-        <div class="d-flex justify-content-center mt-3">
-            <input type="text" id="search-input" class="form-control" placeholder="Hisse senedi ara" style="max-width: 250px;">
-            <button id="search-button" class="btn btn-primary ms-2">Ara</button>
+        <!-- Arama kutusu -->
+        <div style="display: flex; justify-content: center; align-items: center; height: 15vh;">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Arama yap..." oninput="searchData()" autocomplete="off">
+                <div id="searchResults" class="results-container">
+                    
+                </div>
+            </div>
         </div>
+        
     </header>
 
     
 
     <section id="hero" class="text-center p-5 bg-light">
         <h2>Piyasalar</h2>
-        <p>Güncel hisse senedi ve kripto para fiyatlarını takip edin.</p>
+        <p>Aşağıdan ilgilendiğiniz piyasayı seçiniz.</p>
     </section>
 
     <section id="market" class="container py-5">
+        
         <h3 class="text-center mb-4">Piyasa Verileri</h3>
         <div class="d-flex justify-content-center mb-3">
-            <button class="btn btn-primary mx-2" onclick="fetchMarketData('bist100')">GÜMÜŞ-ALTIN</button>
-            <button class="btn btn-secondary mx-2" onclick="fetchMarketData('bist50')">KRİPTO</button>
-            <button class="btn btn-success mx-2" onclick="fetchMarketData('bist30')">EMTİA</button>
-            <button class="btn btn-dark mx-2" onclick="fetchMarketData('bist30')">DÖVİZ</button>
+            <button class="btn" style="background-color: #DAA520; color: white;" onclick="veriTablo('gold', 'goldTable')">GÜMÜŞ-ALTIN</button>
+            
+            <button class="btn btn-dark mx-2" onclick="veriTablo('kripto', 'kriptoTable')">KRİPTO</button>
+            
+            <button class="btn btn-light mx-2" onclick="veriTablo('emtia', 'emtiaTable')">EMTİA</button>
+            <button class="btn btn-secondary mx-2" onclick="veriTablo('doviz', 'dovizTable')">DÖVİZ</button>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped hidden" id="goldTable">
                 <thead>
                     <tr>
-                        <th>Hisse Adı</th>
-                        <th>Fiyat</th>
+                        <th>İsim</th>
+                        <th>Alış</th>    
+                        <th>Satış</th>
                         <th>Değişim (%)</th>
-                        <th>Hacim</th>
+                        
                     </tr>
                 </thead>
-                <tbody id="market-data">
+                <tbody></tbody>
+            </table>
+
+            <table class="table table-striped hidden" id="kriptoTable">
+                <thead>
                     <tr>
-                        <td>XYZ Şirketi</td>
-                        <td>100.50 TL</td>
-                        <td class="text-success">+1.25%</td>
-                        <td>500,000</td>
+                        <th>Kodu</th>
+                        <th>İsim</th>    
+                        <th>Hacmi</th>
+                        <th>Fiyatı ($)</th>
+                        <th>Piyasa Değeri</th>
+                        <th>Piyasadaki Toplam Adet</th>
+                        <th>Saatlik Değişim (%)</th>
+                        <th>Günlük Değişim (%)</th>
+                        <th>Haftalık Değişim (%)</th>
+                        
                     </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <table class="table table-striped hidden" id="emtiaTable">
+                <thead>
                     <tr>
-                        <td>ABC Şirketi</td>
-                        <td>250.00 TL</td>
-                        <td class="text-danger">-0.75%</td>
-                        <td>1,200,000</td>
+                        <th>Kodu</th>
+                        <th>İsim</th>
+                        <th>Alış</th>    
+                        <th>Satış</th>
+                        <th>Değişim (%)</th>
+                        
                     </tr>
-                </tbody>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <table class="table table-striped hidden" id="dovizTable">
+                <thead>
+                    <tr>
+                        <th>Kodu</th>
+                        <th>İsim</th>
+                        <th>Alış</th>    
+                        <th>Satış</th>
+                        <th>Değişim (%)</th>
+                        
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </section>
 
     
 
-    <section id="news" class="bg-light py-5">
+    <section id="contact" class="bg-light py-5">
         <div class="container">
-            <h3 class="text-center mb-4">Son Haberler</h3>
+            
             <div class="row">
-                <div class="col-md-4">
+                
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Piyasa Analizi</h5>
-                            <p class="card-text">Bugün piyasalarda dalgalanma yaşandı...</p>
-                            <a href="#" class="btn btn-primary">Devamını Oku</a>
+                            <h5 class="card-title">İletişim Adreslerimiz</h5>
+                            <p>Email: <a href="mailto:ornek@domain.com">borsacasusu@domain.com</a></p>
+                            <p>Telefon: <a href="tel:+905001234567">+90 500 123 45 67</a></p>
+                            
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Hisse Fiyatları</h5>
-                            <p class="card-text">XYZ hissesi yeni bir rekor kırdı...</p>
-                            <a href="#" class="btn btn-primary">Devamını Oku</a>
+                            <h5 class="card-title">Sosyal Medya Hesaplarımız</h5>
+                            <p>Bizi Takip Edin</p>
+                            <p>
+                                <a href="https://facebook.com" target="_blank">Facebook</a> |
+                                <a href="https://twitter.com" target="_blank">Twitter</a> |
+                                <a href="https://instagram.com" target="_blank">Instagram</a> |
+                                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                              </p>
+                            
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Kripto Para</h5>
-                            <p class="card-text">Bitcoin fiyatları tekrar yükselişte...</p>
-                            <a href="#" class="btn btn-primary">Devamını Oku</a>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Borsa Takip. Tüm hakları saklıdır.</p>
-    </footer>
-    <script src="borsa.js"></script>
+    <script>
+        window.onload = function () {
+           veriAl('gold');
+           veriAl('doviz');
+           veriAl('hisse');
+           veriAl('kripto');
+           veriAl('emtia');
+           
+       };
+   </script>
+    
 </body>
 </html>

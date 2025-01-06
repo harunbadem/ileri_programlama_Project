@@ -1,0 +1,56 @@
+.search-container {
+  width: 50%;
+  margin: 20px auto;
+  position: relative;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results-container {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;  /* Başlangıçta gizli */
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #d6d0d0;
+  background-color: #007bff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.result-item:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.result-details {
+  flex-grow: 1;
+}
+
+.result-extra {
+  color: gray;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none; /* Görünmez yap */
+}
+

@@ -12,69 +12,45 @@
 </head>
 <body>
     <header class="bg-dark text-white p-3">
-        <div class="container d-flex justify-content-between align-items-center" style="gap: 10px;">
+        <div class="container d-flex justify-content-between align-items-center">
             <img src="security.png" alt="Site Başlığı Resmi" width="50" height="auto">
-            <h1 style="margin: 0;">Borsa Casusu</h1>
+            <h1>Borsa Casusu</h1>
             <!-- Menüler -->
             
             <nav class="ms-auto">
                 <a href="index.html" class="text-white mx-2">Ana Sayfa</a>
                 <a href="piyasalar.html" class="text-white mx-2">Piyasalar</a>
-                <a href="haberler.html" class="text-white mx-2">Haberler</a>
+                <a href="#news" class="text-white mx-2">Haberler</a>
                 <a href="#contact" class="text-white mx-2">İletişim</a>
             </nav>
         </div>
 
         
     
-        <!-- Arama kutusu  -->
-        <div style="display: flex; justify-content: center; align-items: center; height: 15vh;">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Arama yap..." oninput="searchData()" autocomplete="off">
-                <div id="searchResults" class="results-container">
-                    
-                </div>
-            </div>
-        </div>
+        
         
     </header>
 
     
 
     <section id="hero" class="text-center p-5 bg-light">
-        <h2>Borsa Dünyasına Hoş Geldiniz</h2>
-        <p>Güncel hisse senedi ve kripto para fiyatlarını takip edin.</p>
+        <h2>Ekonomi Dünyasında Son Gelişmeler</h2>
+        
         
     </section>
-    
     
 
 
     <section id="piyasa" class="container py-5">
-        <h3 class="text-center mb-4">Piyasa Verileri</h3>
-        <div class="text-center"><button class="btn btn-primary" onclick="veriTablo('hisse', 'hisseTable')">
-            Hisse Verilerini Getir</button></div>
         
-        <div class="table-responsive">
-            <table class="table table-striped hidden" id = hisseTable>
-                <thead>
-                    <tr>
-                        <th>Kodu</th>
-                        <th>İsim</th>    
-                        <th>Hacmi</th>
-                        <th>Fiyatı</th>
-                        <th>Min</th>
-                        <th>Max</th>
-                        <th>Değişim (%)</th>
-                        <th>Zaman</th>
-                        
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                
-            </table>
+        
+        <div id="news-container" class="row">
+            
         </div>
-    </section>
+        
+        <div id="pagination-container" style="margin-top: 20px; text-align: center;">
+            
+        </div>
 
     <section id="contact" class="bg-light py-5">
         <div class="container">
@@ -114,14 +90,11 @@
     </section>
 
     <script>
-         window.onload = function () {
-            veriAl('gold');
-            veriAl('doviz');
-            veriAl('hisse');
-            veriAl('kripto');
-            veriAl('emtia');
-            
-        };
-    </script>
+        window.onload = function () {
+           fetchNews(currentPage);
+       };
+   </script>
+
+    
 </body>
 </html>
